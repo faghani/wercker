@@ -143,6 +143,13 @@ runTests() {
   basicTest "after steps"       build "$testsDir/after-steps-fail" --docker-local --pipeline build_true  || return 1
   basicTest "relative symlinks" build "$testsDir/relative-symlinks" --docker-local || return 1
 
+  export X_BACKSLASH='back\slash'
+  basicTest "backslash in envvar escaped" build "$testsDir/envvars" --docker-local --pipeline test-backslash || return 1
+  export X_BACKTICK='back`tick'
+  basicTest "backtick in envvar escaped" build "$testsDir/envvars" --docker-local --pipeline test-backtick || return 1
+  export X_BANG='ban!g'
+  basicTest "bang in envvar escaped" build "$testsDir/envvars" --docker-local --pipeline test-bang || return 1
+
   #return 1
 
   # test different shells

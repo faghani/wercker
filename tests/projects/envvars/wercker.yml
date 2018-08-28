@@ -1,0 +1,27 @@
+test-backtick:
+  box:
+    id: alpine
+  steps:
+    - script:
+        name: backtick escaped
+        code: |
+          [ -z "${BACKTICK}" ] && { echo "BACKTICK environment variable not set" ; exit 1 ; }
+          [ "${BACKTICK}" == 'back`tick' ] || exit 1
+test-bang:
+  box:
+    id: alpine
+  steps:
+    - script:
+        name: bang escaped
+        code: |
+          [ -z "${BANG}" ] && { echo "BANG environment variable not set" ; exit 1 ; }
+          [ "${BANG}" == 'ban!g' ] || exit 1
+test-backslash:
+  box:
+    id: alpine
+  steps:
+    - script:
+        name: backslash escaped
+        code: |
+          [ -z "${BACKSLASH}" ] && { echo "BACKSLASH environment variable not set" ; exit 1 ; }
+          [ "${BACKSLASH}" == 'back\slash' ] || exit 1
